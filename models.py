@@ -86,3 +86,34 @@ class SpellSchema(ma.Schema):
 
 spell_schema = SpellSchema()
 spells_schema = SpellSchema(many = True)
+
+class Feature(db.Model):
+    id = db.Column(db.String, primary_key = True)
+    url = db.Column(db.String(300), nullable = False)
+    name = db.Column(db.String(100), nullable = False)
+    level = db.Column(db.String(2))
+    classes = db.Column(db.String(100))
+    desc = db.Column(db.String)
+    user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
+    
+    def __init__(self, id, url, name, level, casting_time, duration, classes, desc, user_token):
+        self.id = id
+        self.url = url
+        self.name = name
+        self.level = level
+        self.classes = classes
+        self.desc = desc
+        self.user_token = user_token
+
+    def __repr__(self):
+        return f'The following feature has been added to mybook: {self.name}'
+    
+    def set_id(self):
+        return (secrets.token_urlsafe())
+    
+class FeatureSchema(ma.Schema):
+    class Meta:
+        fields = ['id', 'url','name','level', 'classes', 'desc', 'user_token']
+
+feature_schema = FeatureSchema()
+features_schema = FeatureSchema(many = True)
