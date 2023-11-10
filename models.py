@@ -60,9 +60,10 @@ class Spell(db.Model):
     casting_time = db.Column(db.String(25))
     duration = db.Column(db.String(50))
     classes = db.Column(db.String(100))
+    desc = db.Column(db.String)
     user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
     
-    def __init__(self, id, url, name, level, casting_time, duration, classes, user_token):
+    def __init__(self, id, url, name, level, casting_time, duration, classes, desc, user_token):
         self.id = id
         self.url = url
         self.name = name
@@ -70,17 +71,18 @@ class Spell(db.Model):
         self.casting_time = casting_time
         self.duration = duration
         self.classes = classes
+        self.desc = desc
         self.user_token = user_token
 
     def __repr__(self):
-        return f'The following spell has been added to the phonebook: {self.name}'
+        return f'The following spell has been added to mybook: {self.name}'
     
     def set_id(self):
         return (secrets.token_urlsafe())
     
 class SpellSchema(ma.Schema):
     class Meta:
-        fields = ['id', 'url','name','level','casting_time','duration', 'classes', 'user_token']
+        fields = ['id', 'url','name','level','casting_time','duration', 'classes', 'desc', 'user_token']
 
 spell_schema = SpellSchema()
 spells_schema = SpellSchema(many = True)
