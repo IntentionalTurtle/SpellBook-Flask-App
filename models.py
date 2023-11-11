@@ -91,7 +91,7 @@ class Feature(db.Model):
     id = db.Column(db.String, primary_key = True)
     url = db.Column(db.String(300), nullable = False)
     name = db.Column(db.String(100), nullable = False)
-    level = db.Column(db.String(2))
+    level = db.Column(db.String(10))
     casting_time = db.Column(db.String(25))
     duration = db.Column(db.String(50))
     classes = db.Column(db.String(100))

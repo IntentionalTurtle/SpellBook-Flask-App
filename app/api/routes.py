@@ -93,6 +93,7 @@ def create_feature(current_user_token):
     print(f'BIG TESTER: {current_user_token.token}')
 
     feature = Feature(id, url, name, level, casting_time, duration, classes, desc, user_token = user_token )
+    print(feature)
 
     db.session.add(feature)
     db.session.commit()
