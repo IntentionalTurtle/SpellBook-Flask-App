@@ -92,6 +92,8 @@ class Feature(db.Model):
     url = db.Column(db.String(300), nullable = False)
     name = db.Column(db.String(100), nullable = False)
     level = db.Column(db.String(2))
+    casting_time = db.Column(db.String(25))
+    duration = db.Column(db.String(50))
     classes = db.Column(db.String(100))
     desc = db.Column(db.String)
     user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
@@ -101,6 +103,8 @@ class Feature(db.Model):
         self.url = url
         self.name = name
         self.level = level
+        self.casting_time = casting_time
+        self.duration = duration
         self.classes = classes
         self.desc = desc
         self.user_token = user_token
@@ -113,7 +117,7 @@ class Feature(db.Model):
     
 class FeatureSchema(ma.Schema):
     class Meta:
-        fields = ['id', 'url','name','level', 'classes', 'desc', 'user_token']
+        fields = ['id', 'url','name','level','casting_time','duration', 'classes', 'desc', 'user_token']
 
 feature_schema = FeatureSchema()
 features_schema = FeatureSchema(many = True)

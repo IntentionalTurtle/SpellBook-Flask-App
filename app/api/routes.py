@@ -84,13 +84,15 @@ def create_feature(current_user_token):
     url = request.json['url']
     name = request.json['name']
     level = request.json['level']
+    casting_time = request.json['casting_time']
+    duration = request.json['duration']
     classes = request.json['classes']
     desc = request.json['desc']
     user_token = current_user_token.token
 
     print(f'BIG TESTER: {current_user_token.token}')
 
-    feature = Feature(id, url, name, level, classes, desc, user_token = user_token )
+    feature = Feature(id, url, name, level, casting_time, duration, classes, desc, user_token = user_token )
 
     db.session.add(feature)
     db.session.commit()
@@ -124,6 +126,8 @@ def update_feature(current_user_token,id):
     feature.url = request.json['url']
     feature.name = request.json['name']
     feature.level = request.json['level']
+    feature.casting_time = request.json['casting_time']
+    feature.duration = request.json['duration']
     feature.classes = request.json['classes']
     feature.desc = request.json['desc']
     feature.user_token = current_user_token.token
