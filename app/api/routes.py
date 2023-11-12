@@ -127,8 +127,8 @@ def update_feature(current_user_token,id):
     feature.url = request.json['url']
     feature.name = request.json['name']
     feature.level = request.json['level']
-    feature.casting_time = request.json['casting_time']
-    feature.duration = request.json['duration']
+    feature.casting_time = ''
+    feature.duration = ''
     feature.classes = request.json['classes']
     feature.desc = request.json['desc']
     feature.user_token = current_user_token.token
